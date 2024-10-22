@@ -1,565 +1,221 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart, Crescent Moon, and Rainbow Animation</title>
+    <title>Coldplay Artistic Research Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="logo.ico">
     <style>
+
+.copyleft{
+
+display:inline-block;
+transform:rotate(180deg);
+}
+        .logo-size {
+        height: 50px;
+        width: 50px;
+            object-fit: cover;
+    }
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+        
         body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #ffffff;
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        
+        .dropdown-menu {
+            background-color: #385488;
+            backdrop-filter: blur(10px);
+        }
+        
+        .dropdown-item {
+            color: #ffffff;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-section {
+            background: url('coldplay-background.jpg') no-repeat center center;
+            background-size: cover;
+            height: 50vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            background-color: #0d335f;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
+            text-align: center;
         }
-        .controls-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
+        
+        .hero-content {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
             border-radius: 10px;
         }
-        canvas {
-            border: 2px solid white;
-            max-width: 100%;
-            height: auto;
+        
+        .section-title {
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
         }
-        .plyr, .default-player {
-            margin-top: 20px;
-            width: 100%;
-            max-width: 300px;
+        
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            transition: transform 0.3s ease;
         }
-        .default-player {
-            display: none;
+        
+        .card:hover {
+            transform: translateY(-5px);
         }
-        /* Custom CSS for default HTML5 audio player */
-        .default-player audio {
-            width: 100%;
-            background-color: #f1f3f4;
-            border-radius: 4px;
-            padding: 5px;
+        
+        .btn-custom {
+            background-color: #1e3c72;
+            color: #ffffff;
+            border: none;
+            transition: background-color 0.3s ease;
         }
-        .default-player audio::-webkit-media-controls-panel {
-            background-color: #f1f3f4;
-        }
-        .default-player audio::-webkit-media-controls-current-time-display,
-        .default-player audio::-webkit-media-controls-time-remaining-display {
-            color: #5f6368;
-        }
-        #audio-upload, #shape-selector {
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-            max-width: 300px;
-        }
-        #song-title {
-            color: white;
-            margin-top: 10px;
-            font-size: 18px;
-            text-align: center;
-            max-width: 300px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        @media (max-width: 768px) {
-            .controls-container {
-                padding: 10px;
-            }
-            canvas {
-                width: 100%;
-                height: auto;
-            }
+        
+        .btn-custom:hover {
+            background-color: #2a5298;
         }
     </style>
-
-    <!-- Include Plyr CSS -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 </head>
 <body>
-<h2 style="color: white;">Coldplay audio player</h2>
-<div class="controls-container">
-    <input type="file" id="audio-upload" accept="audio/*" />
-    <select id="shape-selector">
-        <option value="heart">Heart</option>
-        <option value="moon">Crescent Moon</option>
-        <option value="rainbow">Rainbow</option>
-    </select>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="Logo" class="logo-size">
+                Coldplay Artistic Research
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html"><i class="fas fa-home me-2"></i>Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="videosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-video me-2"></i>Videos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="videosDropdown">
+                            <li><a class="dropdown-item" href="./videotest/"><i class="fas fa-terminal me-2"></i>Technology and Engineering</a></li>
+                            <li><a class="dropdown-item" href="./videotest2/"><i class="fas fa-laptop-code me-2"></i>Coding</a></li>
+                            <li><a class="dropdown-item" href="./python"><i class="fab fa-python me-2"></i>Robotics</a></li>
+                            <li><a class="dropdown-item" href="./10shapes"><i class="fab fa-reddit-square me-2"></i>Digitalization</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-flask me-2"></i>Projects
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+                            <li><a class="dropdown-item" href="./svgeditor1"><i class="fas fa-diagram-project me-2"></i>SVG Editor</a></li>
+                            <li><a class="dropdown-item" href="./audio1"><i class="fas fa-star me-2"></i>Audio Visualizer</a></li>
+                            <li><a class="dropdown-item" href="./audio2"><i class="fas fa-mercury me-2"></i>Robotics</a></li>
+                            <li><a class="dropdown-item" href="./music"><i class="fas fa-lightbulb me-2"></i>Engineering</a></li>
+                            <li><a class="dropdown-item" href="./coordinates"><i class="fas fa-draw-polygon me-2"></i>Coordinates</a></li>
+                            <li><a class="dropdown-item" href="./drawshapes"><i class="fas fa-shapes me-2"></i>Draw Shapes</a></li>
+                            <li><a class="dropdown-item" href="./generateshapes"><i class="fas fa-vector-square me-2"></i>Generate Shapes</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Display the song title here -->
-    <h2 id="song-title"></h2>
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="display-4 fw-bold">Coldplay Artistic Research Project</h1>
+            <p class="lead">An interdisciplinary exploration of music, technology, and creativity</p>
+        </div>
+    </header>
 
-    <!-- Audio element for Plyr -->
-    <audio id="player" class="plyr" controls></audio>
+    <main class="container py-5">
+        <section>
+            <h2 class="section-title">Project Overview</h2>
+            <p>This multidisciplinary research project involves students from different age groups and specialties exploring various aspects of Coldplay's music, career, and impact through creative and technological projects.</p>
+            
+            <div class="row mt-4">
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Projects Group</h5>
+                            <p class="card-text">Ages 11-13</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Digitalization Group</h5>
+                            <p class="card-text">Ages 15-16</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Coding and Robotics Group</h5>
+                            <p class="card-text">Ages 16-17</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Technology and Engineering 2 Group</h5>
+                            <p class="card-text">Ages 17-18</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Default HTML5 audio player -->
-    <div class="default-player">
-        <audio id="default-player" controls></audio>
-    </div>
-</div>
+        <section class="mt-5">
+            <h2 class="section-title">Project Highlights</h2>
+            <p>Students have proposed innovative ideas to make concerts more sustainable, including smart clothing, augmented reality, and energy-generating devices. They've also developed audio visualizers for Coldplay songs featuring interactive elements.</p>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-custom btn-lg">Explore Projects</a>
+            </div>
+        </section>
 
-<!-- Include Plyr JS -->
-<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+        <section class="mt-5">
+            <h2 class="section-title">Resources</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <a href="http://github.com/drfperez" target="_blank" class="btn btn-custom btn-block"><i class="fa-brands fa-github me-2"></i>Professor's GitHub</a>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a href="https://blocs.xtec.cat/tecno" target="_blank" class="btn btn-custom btn-block"><i class="fas fa-blog me-2"></i>Xtec Blog</a>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a href="https://pompeu.neocities.org" target="_blank" class="btn btn-custom btn-block"><i class="fas fa-globe me-2"></i>Neocities Blog</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<script>
-let amplitude, fft;
-let song;
-let shapes = [];
-let numShapes = 10;
-let selectedShape = 'heart';
-let player;
+    <footer class="bg-dark text-white text-center py-3">
+        <p><span class="copyleft">&copy;</span> 2024 Pompeu Fabra High School (Martorell, Barcelona). Contact: fperez@iespompeufabra.cat.</p>
+    </footer>
 
-function setup() {
-    let canvas = createCanvas(600, 600);
-    canvas.parent(document.body);
-    canvas.style('max-width', '100%');
-    canvas.style('height', 'auto');
-
-    amplitude = new p5.Amplitude();
-    fft = new p5.FFT();
-
-    for (let i = 0; i < numShapes; i++) {
-        let x = random(width);
-        let y = random(height);
-        shapes.push({x: x, y: y});
-    }
-
-    let fileInput = document.getElementById('audio-upload');
-    fileInput.addEventListener('change', handleFileUpload);
-
-    let shapeSelector = document.getElementById('shape-selector');
-    shapeSelector.addEventListener('change', function() {
-        selectedShape = this.value;
-    });
-
-    // Initialize Plyr with fallback
-    try {
-        player = new Plyr('#player');
-    } catch (error) {
-        console.error('Plyr initialization failed:', error);
-        document.querySelector('.plyr').style.display = 'none';
-        document.querySelector('.default-player').style.display = 'block';
-    }
-}
-
-function draw() {
-    background('#0d335f');
-
-    if (!song || !song.isPlaying()) {
-      return;
-    }
-
-    let level = amplitude.getLevel();
-    let size = map(level, 0, 1, 0.5, 1.5); // Escala de la mida de la forma
-
-    let spectrum = fft.analyze();
-    let bass = fft.getEnergy("bass");
-    let treble = fft.getEnergy("treble");
-
-    let r = map(bass, 0, 255, 50, 255);
-    let b = map(treble, 0, 255, 50, 255);
-    let g = map(level, 0, 1, 50, 255);
-
-    noFill();
-    stroke(r, g, b);
-    strokeWeight(3);
-fill(r,g,b);//aquesta linea nova omple de color rgb i la anterior feia el contorn
-   //the previous line fills the shape bellow with the rgb colors obtained from sound frequencies (bass and treble) and volume (level)
-    // Dibuixar múltiples formes (cors, llunes o arcs de Sant Martí)
-    shapes.forEach(shape => {
-      push();
-      translate(shape.x, shape.y);
-      scale(size);
-
-      if (selectedShape === 'heart') {
-          drawHeart(); // Dibuixa el cor
-      } else if (selectedShape === 'moon') {
-          drawCrescentMoon(); // Dibuixa la lluna creixent
-      } else if (selectedShape === 'rainbow') {
-          drawRainbow(); // Dibuixa l'arc de Sant Martí
-      }
-
-      pop();
-   });
-}
-
-function drawHeart() {
-  beginShape();// c from coldplay
-vertex(113, 22.1875);
-vertex(101, 20.1875);
-vertex(89, 22.1875);
-vertex(80, 28.1875);
-vertex(70, 36.1875);
-vertex(64, 46.1875);
-vertex(61, 58.1875);
-vertex(61, 70.1875);
-vertex(64, 80.1875);
-vertex(69, 88.1875);
-vertex(75, 94.1875);
-vertex(80, 99.1875);
-vertex(87, 101.1875);
-vertex(95, 103.1875);
-vertex(102, 104.1875);
-vertex(111, 103.1875);
-vertex(99, 96.1875);
-vertex(91, 91.1875);
-vertex(84, 83.1875);
-vertex(79, 70.1875);
-vertex(79, 58.1875);
-vertex(82, 47.1875);
-vertex(89, 36.1875);
-vertex(98, 29.1875);
-vertex(109, 23.1875);
-vertex(113, 19.1875);
-endShape(CLOSE);
-beginShape();// o from coldplay
-vertex(198, 20.1875);
-vertex(187, 23.1875);
-vertex(171, 28.1875);
-vertex(164, 35.1875);
-vertex(158, 43.1875);
-vertex(153, 53.1875);
-vertex(151, 65.1875);
-vertex(153, 77.1875);
-vertex(158, 87.1875);
-vertex(166, 95.1875);
-vertex(174, 100.1875);
-vertex(184, 102.1875);
-vertex(196, 104.1875);
-vertex(209, 101.1875);
-vertex(223, 94.1875);
-vertex(232, 82.1875);
-vertex(238, 69.1875);
-vertex(237, 54.1875);
-vertex(232, 42.1875);
-vertex(223, 32.1875);
-vertex(213, 25.1875);
-vertex(202, 21.1875);
-endShape(CLOSE);
-beginShape();// l from coldplay
-vertex(294, 27.1875);
-vertex(290, 35.1875);
-vertex(286, 44.1875);
-vertex(285, 53.1875);
-vertex(286, 60.1875);
-vertex(288, 67.1875);
-vertex(292, 74.1875);
-vertex(296, 80.1875);
-vertex(301, 85.1875);
-vertex(310, 88.1875);
-vertex(316, 90.1875);
-vertex(323, 92.1875);
-vertex(332, 92.1875);
-vertex(339, 90.1875);
-vertex(347, 86.1875);
-vertex(348, 90.1875);
-vertex(341, 95.1875);
-vertex(331, 99.1875);
-vertex(317, 100.1875);
-vertex(304, 98.1875);
-vertex(294, 93.1875);
-vertex(287, 87.1875);
-vertex(281, 79.1875);
-vertex(278, 68.1875);
-vertex(275, 60.1875);
-vertex(276, 49.1875);
-vertex(280, 38.1875);
-vertex(286, 31.1875);
-endShape(CLOSE);
-beginShape();// d from coldplay
-vertex(391, 27.1875);
-vertex(399, 31.1875);
-vertex(406, 36.1875);
-vertex(411, 41.1875);
-vertex(415, 47.1875);
-vertex(420, 54.1875);
-vertex(419, 63.1875);
-vertex(419, 72.1875);
-vertex(416, 79.1875);
-vertex(414, 88.1875);
-vertex(408, 92.1875);
-vertex(402, 98.1875);
-vertex(395, 103.1875);
-vertex(390, 105.1875);
-vertex(395, 107.1875);
-vertex(401, 108.1875);
-vertex(409, 107.1875);
-vertex(415, 105.1875);
-vertex(422, 102.1875);
-vertex(428, 98.1875);
-vertex(432, 93.1875);
-vertex(436, 89.1875);
-vertex(441, 82.1875);
-vertex(443, 76.1875);
-vertex(445, 70.1875);
-vertex(445, 63.1875);
-vertex(442, 56.1875);
-vertex(440, 48.1875);
-vertex(435, 41.1875);
-vertex(429, 34.1875);
-vertex(420, 28.1875);
-vertex(414, 26.1875);
-vertex(406, 24.1875);
-vertex(399, 24.1875);
-vertex(393, 25.1875);
-endShape(CLOSE);
-beginShape();// p from coldplay
-vertex(482, 45.1875);
-vertex(488, 44.1875);
-vertex(494, 41.1875);
-vertex(500, 39.1875);
-vertex(506, 39.1875);
-vertex(511, 41.1875);
-vertex(516, 43.1875);
-vertex(521, 44.1875);
-vertex(527, 47.1875);
-vertex(532, 50.1875);
-vertex(536, 55.1875);
-vertex(540, 60.1875);
-vertex(543, 68.1875);
-vertex(544, 75.1875);
-vertex(545, 83.1875);
-vertex(544, 92.1875);
-vertex(540, 100.1875);
-vertex(538, 106.1875);
-vertex(544, 102.1875);
-vertex(547, 97.1875);
-vertex(550, 92.1875);
-vertex(554, 85.1875);
-vertex(556, 80.1875);
-vertex(558, 74.1875);
-vertex(558, 69.1875);
-vertex(557, 63.1875);
-vertex(556, 58.1875);
-vertex(554, 53.1875);
-vertex(552, 48.1875);
-vertex(549, 44.1875);
-vertex(544, 40.1875);
-vertex(539, 35.1875);
-vertex(532, 31.1875);
-vertex(525, 27.1875);
-vertex(518, 27.1875);
-vertex(510, 27.1875);
-vertex(502, 29.1875);
-vertex(494, 33.1875);
-vertex(488, 38.1875);
-endShape(CLOSE);
-beginShape();// l from coldplay
-vertex(609, 31.1875);
-vertex(607, 37.1875);
-vertex(604, 43.1875);
-vertex(603, 50.1875);
-vertex(603, 56.1875);
-vertex(603, 63.1875);
-vertex(605, 69.1875);
-vertex(608, 75.1875);
-vertex(611, 80.1875);
-vertex(614, 85.1875);
-vertex(619, 88.1875);
-vertex(624, 91.1875);
-vertex(628, 93.1875);
-vertex(634, 95.1875);
-vertex(642, 96.1875);
-vertex(648, 95.1875);
-vertex(653, 95.1875);
-vertex(658, 92.1875);
-vertex(662, 89.1875);
-vertex(667, 88.1875);
-vertex(664, 94.1875);
-vertex(660, 99.1875);
-vertex(652, 101.1875);
-vertex(645, 102.1875);
-vertex(638, 104.1875);
-vertex(631, 103.1875);
-vertex(624, 102.1875);
-vertex(617, 100.1875);
-vertex(609, 95.1875);
-vertex(604, 90.1875);
-vertex(599, 84.1875);
-vertex(597, 78.1875);
-vertex(594, 71.1875);
-vertex(594, 71.1875);
-vertex(593, 64.1875);
-vertex(592, 57.1875);
-vertex(594, 51.1875);
-vertex(596, 45.1875);
-vertex(600, 39.1875);
-vertex(604, 34.1875);
-endShape(CLOSE);
-beginShape();//a from coldplay
-vertex(782, 80.1875);
-vertex(781, 76.1875);
-vertex(778, 71.1875);
-vertex(775, 66.1875);
-vertex(772, 61.1875);
-vertex(768, 57.1875);
-vertex(763, 54.1875);
-vertex(756, 52.1875);
-vertex(750, 49.1875);
-vertex(743, 48.1875);
-vertex(736, 49.1875);
-vertex(727, 52.1875);
-vertex(719, 56.1875);
-vertex(713, 62.1875);
-vertex(709, 68.1875);
-vertex(706, 73.1875);
-vertex(705, 79.1875);
-vertex(701, 75.1875);
-vertex(702, 70.1875);
-vertex(702, 66.1875);
-vertex(705, 59.1875);
-vertex(706, 53.1875);
-vertex(709, 48.1875);
-vertex(712, 45.1875);
-vertex(715, 41.1875);
-vertex(718, 39.1875);
-vertex(723, 36.1875);
-vertex(728, 33.1875);
-vertex(733, 31.1875);
-vertex(741, 31.1875);
-vertex(747, 31.1875);
-vertex(753, 33.1875);
-vertex(757, 34.1875);
-vertex(762, 36.1875);
-vertex(768, 40.1875);
-vertex(773, 45.1875);
-vertex(777, 50.1875);
-vertex(782, 55.1875);
-vertex(782, 62.1875);
-vertex(784, 68.1875);
-vertex(784, 75.1875);
-endShape(CLOSE);
-beginShape();// y from coldplay
-vertex(815, 30.1875);
-vertex(820, 33.1875);
-vertex(826, 36.1875);
-vertex(831, 39.1875);
-vertex(836, 42.1875);
-vertex(840, 48.1875);
-vertex(844, 55.1875);
-vertex(847, 63.1875);
-vertex(848, 71.1875);
-vertex(846, 80.1875);
-vertex(843, 89.1875);
-vertex(839, 97.1875);
-vertex(833, 103.1875);
-vertex(826, 106.1875);
-vertex(818, 109.1875);
-vertex(824, 109.1875);
-vertex(832, 108.1875);
-vertex(839, 108.1875);
-vertex(846, 105.1875);
-vertex(852, 101.1875);
-vertex(855, 95.1875);
-vertex(860, 90.1875);
-vertex(862, 85.1875);
-vertex(863, 79.1875);
-vertex(865, 72.1875);
-vertex(865, 65.1875);
-vertex(863, 60.1875);
-vertex(861, 54.1875);
-vertex(857, 48.1875);
-vertex(853, 43.1875);
-vertex(848, 39.1875);
-vertex(843, 34.1875);
-vertex(836, 31.1875);
-vertex(828, 29.1875);
-vertex(822, 29.1875);
-endShape(CLOSE);
-beginShape();// cercle from coldplay
-vertex(874, 30.1875);
-vertex(868, 33.1875);
-vertex(864, 39.1875);
-vertex(863, 45.1875);
-vertex(864, 49.1875);
-vertex(866, 52.1875);
-vertex(869, 54.1875);
-vertex(872, 57.1875);
-vertex(875, 57.1875);
-vertex(879, 58.1875);
-vertex(883, 57.1875);
-vertex(886, 54.1875);
-vertex(888, 51.1875);
-vertex(890, 47.1875);
-vertex(890, 43.1875);
-vertex(889, 38.1875);
-vertex(887, 35.1875);
-vertex(883, 33.1875);
-vertex(878, 30.1875);
-endShape(CLOSE);
-}
-
-function drawCrescentMoon() {
-   // Dibuix de la lluna creixent
-   fill(0);
-   ellipse(0, 0, 50, 100); // Lluna plena
-   fill('#0d335f');
-   ellipse(10, 0, 50, 100); // Ombra per crear la creixent
-}
-
-function drawRainbow() {
-   // Dibuix d'un arc de Sant Martí
-   let radius = 50;
-   let colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8B00FF']; // Colors de l'arc de Sant Martí
-
-   for (let i = 0; i < colors.length; i++) {
-       stroke(colors[i]);
-       noFill();
-       arc(0, 0, radius + i * 10, radius + i * 10, PI, TWO_PI); // Dibuixar arcs concèntrics amb diferents colors
-   }
-}
-
-function handleFileUpload(event) {
-   let file = event.target.files[0];
-   if (file && file.type.startsWith('audio/')) {
-       let fileURL = URL.createObjectURL(file);
-
-       // Update audio player with the new audio file
-       const audioElement = document.getElementById('player');
-       const defaultAudioElement = document.getElementById('default-player');
-       audioElement.src = fileURL;
-       defaultAudioElement.src = fileURL;
-
-       if (player) {
-           player.source = {
-               type: 'audio',
-               sources: [{ src: fileURL, type: file.type }]
-           };
-       }
-
-       // Update song title
-       const songTitleElement = document.getElementById('song-title');
-       songTitleElement.textContent = file.name;
-
-       // Load sound for p5.js analysis
-       loadSound(fileURL, soundLoaded);
-   } else {
-       console.error('Please upload a valid audio file');
-   }
-}
-
-function soundLoaded(loadedSong) {
-   if (song && song.isPlaying()) {
-       song.stop();
-   }
-   song = loadedSong;
-   song.play();
-   amplitude.setInput(song);
-   fft.setInput(song);
-}
-</script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
