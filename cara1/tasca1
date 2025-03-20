@@ -12,10 +12,8 @@ function draw (){
 background (161, 167, 255 );//fons blau clar de tot el dibuix
 fill (249, 207, 142);//color de la cara
 ellipse(250, 250, 150, 220);//cara
-
 fill (255, 255, 255);//color de l'ull dret
 ellipse(190, 215, 70, 40);//ull dret
-
 fill (255, 255, 255);//color de l'ull esquerre
 ellipse(310, 215, 70, 40);//ull esquerre
 }
