@@ -55,6 +55,7 @@ color: #333;
 z-index: 10;
 /* Es col·loca per sobre de tot del contingut (amb un índex z alt) */
 }
+
 .loader {
 width: 50px;
 height: 50px;
@@ -67,30 +68,7 @@ border-radius: 50%;
 animation: spin 1s linear infinite;
 /* Aplica una animació que fa girar l'element indefinidament */
 margin-bottom: 10px;
-}
-/* Declaració de la keyframe de l'animació per girar l'element loader */
-@keyframes spin {
-0% { transform:rotate(0deg); }
-100% { transform: rotate(360deg); }
-}
-/* Fi de l'estil CSS */
-</style>
-</head>
 
-<head>
-.loader {
-width: 50px;
-height: 50px;
-border: 6px solid #3498db;
-/* Marge de 6 píxels de grosor amb color blau (part de la vora) */
-border-top: 6px solid transparent;
-/* La part superior és transparent per fer l'efecte giratori */
-border-radius: 50%;
-/*Fa el loader circular */
-animation: spin 1s linear infinite;
-/* Aplica una animació que fa girar l'element indefinidament */
-margin-bottom: 10px;
-}
 
 /* Declaració de la keyframe de l'animació per girar l'element loader */
 @keyframes spin {
@@ -100,7 +78,9 @@ margin-bottom: 10px;
 /* Fi de l'estil CSS */
 </style>
 </head>
+}
 
+<body>
 <!--Cos del document: aquí es col·loca el contingut visible a la pàgina-->
  
 <!--Pantalla de càrrega: s'exhibeix mentre es carreguen els models de detecció facial-->
@@ -122,7 +102,7 @@ let detections=[];
 //Array on es guardaran els resultats (detections) que ens proporciona el model facial
 
 let video
-//Variable que gyardarà la captura del vídeo de la càmera
+//Variable que guardarà la captura del vídeo de la càmera
 
 let modelsMostrats=false;
 //Variable booleana per controlar si ja s'ha amagat la pantalla de càrrega
@@ -143,7 +123,9 @@ video = createCapture(VIDEO);
 
 video.size(480, 480);
 // Es defineix la mida del vídeo
-video.hide(); // Amaguem el vídeo perquè només s'utilitzi per processar la imatge, no per mostrar-lo directament
+video.hide();
+// Amaguem el vídeo perquè només s'utilitzi per processar la imatge, no per mostrar-lo
+directament
 // Opcions per a la detecció facial (configuració del model)
 const faceOptions = {
 withLandmarks: true, // Detecta els punts clau de la cara (ulls, nas, boca, etc.) withExpressions: true, // Detecta les expressions facials (felicitat, tristesa, etc.)
@@ -159,20 +141,20 @@ function faceReady() {
 faceapi.detect(gotFaces);
 // Inicia la detecció facial cridant la funció gotFaces quan es completen les deteccions
 }
-function windowResized() {
+function windowResized(){
 resizeCanvas(windowWidth, windowHeight); // Nova funció per adaptar el canvas
 }
 // Funció que s'executa cada cop que ml5.js té les deteccions d'una cara function gotFaces(error, result){
 if (error) {
 console.error(error);
-// En cas d'error, s'imprimeix a la consola i es deté l'execució return;
+// En cas d'error, s'imprimeix a la consola i es deté l'execució return,
 detections = result;
 }
 // Guarda el resultat de les deteccions (poden ser múltiples cares, però en aquest cas s'utilitza la primera)
 
 if (!modelsMostrats) {
 // Si encara no s'ha amagat la pantalla de cárrega...
-document.getElementById("loading-screen").style.display = "none";
+document.getElementByld("loading-screen").style.display = "none";
 // ...amaguem l'element amb id "loading-screen"
 modelsMostrats = true;
 // Actualitzem la variable perqué no es torni a amagar més tard (ja ho hem fet)
@@ -183,7 +165,7 @@ faceapi.detect(gotFaces);
 }
 
 // Funció draw de p5.js, s'executa moltes vegades per segon per actualitzar la pantalla
-function draw {
+function draw() {
 // Es pinta el fons de color blanc cada vegada que es redibuixa el canvas
 background(255);
 
@@ -195,8 +177,7 @@ let intensity = 0;
 if (detections && detections.length > 0) {
 // Es recuperen les expressions facials de la primera detecció
 let expr = detections[0].expressions;
-// Es determina quina és l'expressió dominant (amb més probabilitat) comparant els
-valors
+// Es determina quina és l'expressió dominant (amb més probabilitat) comparant els valors
 dominant = Object.keys(expr).reduce((a, b) => expr[a] > expr[b] ? a : b);
 // També s'extreu la intensitat de l'expressió dominant
 intensity = expr[dominant];
@@ -206,7 +187,7 @@ intensity = expr[dominant];
 drawDifferentArt(dominant, intensity);
 
 // Dibuixa un text amb el nom de l'expressió facial a la part superior del canvas
-noStroke();
+noStroke;
 fill(44, 169, 225);
 textSize(48);
 textAlign(CENTER, CENTER);
@@ -215,19 +196,18 @@ text("Expressió: " + dominant, width/2, 50);
 // "width/2" centra el text horizontalment i "50" és la coordenada vertical
 // Dibuixa una mini image de la cara a la part inferior dreta del canvas
 if (detections && detections.length > 0) {
-// Es fà servir la imatge del vídeo capturat per representar la cara image(video, width - mini Width - 20, height - miniHeight - 20, mini Width,
-miniHeight);
+// Es fà servir la imatge del vídeo capturat per representar la cara image(video, width - mini Width - 20, height - miniHeight - 20, mini Width,miniHeight);
 }
 }
 
-// Funció per dibuixar art geomètric en funció de l'expressió facial detectada function drawDifferentArt(dominant, intensity) {
+// Funció per dibuixar art geomètric en funció de l'expressió facial detectada function drawDifferentArt(dominant, intensity) /
 push();
 // Guarda l'estat actual de les transformacions grafiques
 
 translate(width/2, height/2);
 // Traslada l'origen del sistema de coordenades al centre del canvas
 
-noFill();
+noFill():
 // Es desactiva el farcit (no es pinta amb color les formes interiors)
 
 strokeWeight(4);
@@ -249,8 +229,6 @@ break;
 case "sad":
 // Cas: expressió "sad" (trist) → es dibuixen línies verticals
 stroke(50, 100, 200, 150);
-
-
 
 // Traç amb un color blau fosc translúcid
 for (let x = -200; x <= 200; x += 40) {
@@ -327,6 +305,7 @@ rect(i, j, 30, 30);
 }
 pop();
 // Restaura l'estat de les transformacions gràfiques al que era abans de fer el translate i altres canvis
+
 /* Fi del codi JavaScript */
 </script>
 </body>
