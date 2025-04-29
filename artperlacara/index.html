@@ -101,7 +101,7 @@ let faceapi;
 let detections=[];
 //Array on es guardaran els resultats (detections) que ens proporciona el model facial
 
-let video
+let video;
 //Variable que guardarà la captura del vídeo de la càmera
 
 let modelsMostrats=false;
@@ -124,14 +124,13 @@ video = createCapture(VIDEO);
 video.size(480, 480);
 // Es defineix la mida del vídeo
 video.hide();
-// Amaguem el vídeo perquè només s'utilitzi per processar la imatge, no per mostrar-lo
-directament
+// Amaguem el vídeo perquè només s'utilitzi per processar la imatge, no per mostrar-lo directament
 // Opcions per a la detecció facial (configuració del model)
 const faceOptions = {
 withLandmarks: true, // Detecta els punts clau de la cara (ulls, nas, boca, etc.) withExpressions: true, // Detecta les expressions facials (felicitat, tristesa, etc.)
 withDescriptors: false, // No sol licita descriptors facials (informació per reconèixer cares)
 minConfidence: 0.5 // Nivell mínim de certesa per considerar una detecció valida
-｝；
+};
 // Inicializa el model de detecció facial amb el vídeo i les opcions definides
 faceapi = ml5.faceApi(video, faceOptions, faceReady);
 }
