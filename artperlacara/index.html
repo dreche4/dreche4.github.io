@@ -67,8 +67,8 @@
     let modelsMostrats = false;
 
     // Mida virtual que es manté proporcional a qualsevol pantalla
-    const VIRTUAL_W = 800;
-    const VIRTUAL_H = 600;
+    const VIRTUAL_W = 600;
+    const VIRTUAL_H = 300;
 
     // Funció que es crida al començar
     function setup() {
@@ -410,7 +410,7 @@ vertex(143, 110.1875);
 vertex(150, 118.1875);
 vertex(154, 124.1875);
 vertex(157, 130.1875);
-endShape();
+endShape(CLOSE);
 beginShape();//persona 2
 vertex(157, 299.1875);
 vertex(158, 289.1875);
@@ -629,7 +629,7 @@ vertex(175, 39.1875);
 vertex(174, 31.1875);
 vertex(175, 22.1875);
 vertex(178, 20.1875);
-endShape();   
+endShape(CLOSE);   
 beginShape();//persona 3
 vertex(242, 1.1875);
 vertex(249, 10.1875);
@@ -889,7 +889,7 @@ vertex(389, 124.1875);
 vertex(387, 113.1875);
 vertex(383, 103.1875);
 vertex(375, 95.1875);
-endShape();  
+endShape(CLOSE);  
 beginShape();//persona 4
 vertex(449, 299.1875);
 vertex(449, 282.1875);
@@ -1111,7 +1111,7 @@ vertex(387, 71.1875);
 vertex(393, 86.1875);
 vertex(397, 96.1875);
 vertex(402, 104.1875);
-endShape(); 
+endShape(CLOSE); 
 beginShape();//figura 5
 vertex(510, 97.1875);
 vertex(513, 92.1875);
@@ -1245,7 +1245,7 @@ vertex(557, 56.1875);
 vertex(561, 59.1875);
 vertex(580, 49.1875);
 vertex(532, 18.1875);
-endShape(); 
+endShape(CLOSE); 
 beginShape();//guitarra
 vertex(234, 70.1875);
 vertex(238, 162.1875);
@@ -1261,7 +1261,7 @@ vertex(262, 198.1875);
 vertex(251, 162.1875);
 vertex(242, 161.1875);
 vertex(237, 74.1875);
-endShape(); 
+endShape(CLOSE); 
 beginShape();
 vertex(200, 208.1875);
 vertex(200, 204.1875);
@@ -1269,7 +1269,7 @@ vertex(189, 206.1875);
 vertex(194, 245.1875);
 vertex(207, 241.1875);
 vertex(204, 230.1875);
-endShape();
+endShape(CLOSE);
 beginShape();
 vertex(314, 193.1875);
 vertex(320, 189.1875);
@@ -1304,7 +1304,7 @@ vertex(475, 158.1875);
 vertex(470, 161.1875);
 vertex(466, 155.1875);
 vertex(390, 187.1875);
-endShape(); 
+endShape(CLOSE); 
 beginShape();//cuadrat
 vertex(0, 298.1875);
 vertex(597, 297.1875);
@@ -1314,16 +1314,16 @@ vertex(0, 297.1875);
 vertex(1, 297.1875);
 vertex(0, 297.1875);
 vertex(1, 297.1875);
-endShape();
+endShape(CLOSE);
 beginShape();//ull figura 1
 vertex(39, 75.1875);
 vertex(39, 77.1875);
 vertex(41, 77.1875);
 vertex(41, 74.1875);
-endShape();  
+endShape(CLOSE);  
 beginShape();
 vertex(78, 20.1875);
-endShape();
+endShape(CLOSE);
 beginShape();
 vertex(93, 38.1875);
 vertex(91, 39.1875);
@@ -1332,7 +1332,7 @@ vertex(91, 44.1875);
 vertex(94, 44.1875);
 vertex(96, 41.1875);
 vertex(94, 39.1875);
-endShape();
+endShape(CLOSE);
 beginShape();//ull figura 2
 vertex(197, 24.1875);
 vertex(194, 27.1875);
@@ -1343,10 +1343,10 @@ vertex(203, 32.1875);
 vertex(203, 28.1875);
 vertex(200, 25.1875);
 vertex(198, 26.1875);
-endShape();          
+endShape(CLOSE);          
 beginShape();
 vertex(199, 30.1875);
-endShape();
+endShape(CLOSE);
 beginShape();//ull figura 3
 vertex(277, 36.1875);
 vertex(275, 37.1875);
@@ -1370,7 +1370,7 @@ vertex(275, 42.1875);
 vertex(278, 43.1875);
 vertex(281, 41.1875);
 endShape();
-beginShape();
+beginShape(CLOSE);
 vertex(326, 46.1875);
 vertex(326, 48.1875);
 vertex(329, 50.1875);
@@ -1378,13 +1378,13 @@ vertex(331, 49.1875);
 vertex(332, 47.1875);
 vertex(330, 44.1875);
 vertex(325, 44.1875);
-endShape();
+endShape(CLOSE);
 beginShape();//ull figura 4
 vertex(431, 21.1875);
 vertex(430, 20.1875);
 vertex(429, 22.1875);
 endShape();   
-beginShape();
+beginShape(CLOSE);
 vertex(479, 47.1875);
 vertex(474, 49.1875);
 vertex(473, 53.1875);
@@ -1396,7 +1396,7 @@ vertex(487, 56.1875);
 vertex(487, 51.1875);
 vertex(484, 47.1875);
 vertex(480, 46.1875);
-endShape();          
+endShape(CLOSE);          
 beginShape();//ull figura 5
 vertex(547, 96.1875);
 vertex(554, 93.1875);
@@ -1404,9 +1404,7 @@ vertex(556, 96.1875);
 vertex(554, 98.1875);
 vertex(551, 100.1875);
 vertex(547, 98.1875);
-endShape();          
-          
-          
+endShape(CLOSE);             
           break;
 
         case 'sad':
