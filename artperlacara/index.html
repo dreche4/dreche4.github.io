@@ -171,10 +171,14 @@ function getEmotionColor(emotion, intensity) {
         textSize(18);
         fill(0);
         for (let emotion in expr) {
-          let percent = nf(expr[emotion] * 100, 2, 1) + "%";
-          text(emotion + ": " + percent, width / 2, yOffset);
-          yOffset += 24;
-        }
+  if (emotion === "asSortedArray") continue; // Ignora la propiedad extra
+ for (let emotion in expr) {
+  if (emotion === "asSortedArray") continue; // Ignora la propiedad extra
+let percent = nf(expr[emotion] * 100, 2, 1) + "%";
+text(emotion + ": " + percent, width / 2, yOffset);
+yOffset += 24;
+}
+
       }
 // Mostra el vídeo si hi ha detecció
       if (detections.length > 0) {
