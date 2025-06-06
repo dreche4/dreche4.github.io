@@ -163,7 +163,20 @@ function getEmotionColor(emotion, intensity) {
       textAlign(CENTER, TOP);
       text("Expressió: " + dominant, width / 2, 10);
 
-      // Mostra el vídeo si hi ha detecció
+      
+      // Mostrar porcentajes de cada emoción si hay detecciones
+      if (detections.length > 0) {
+        let expr = detections[0].expressions;
+        let yOffset = 50;
+        textSize(18);
+        fill(0);
+        for (let emotion in expr) {
+          let percent = nf(expr[emotion] * 100, 2, 1) + "%";
+          text(emotion + ": " + percent, width / 2, yOffset);
+          yOffset += 24;
+        }
+      }
+// Mostra el vídeo si hi ha detecció
       if (detections.length > 0) {
         image(video, width - 140, height - 140, 120, 120);
       }
