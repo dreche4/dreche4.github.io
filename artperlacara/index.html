@@ -62,7 +62,32 @@
     <p>Carregant models, si us plau, espera...</p>
   </div>
   <script>
-    // Variables globals
+    
+// Devuelve un color RGBA según la emoción e intensidad
+function getEmotionColor(emotion, intensity) {
+  intensity = constrain(intensity, 0, 1); // Asegura que está entre 0 y 1
+  let alpha = map(intensity, 0, 1, 50, 255); // Más intensidad, más opacidad
+
+  switch (emotion) {
+    case 'happy':
+      return [255, 215, 0, alpha]; // Amarillo
+    case 'sad':
+      return [0, 100, 255, alpha]; // Azul
+    case 'angry':
+      return [255, 0, 0, alpha]; // Rojo
+    case 'surprised':
+      return [255, 165, 0, alpha]; // Naranja
+    case 'disgusted':
+      return [0, 153, 0, alpha]; // Verde oscuro
+    case 'fearful':
+      return [138, 43, 226, alpha]; // Violeta
+    case 'neutral':
+    default:
+      return [128, 128, 128, alpha]; // Gris
+  }
+}
+
+// Variables globals
     let faceapi, detections = [], video;
     let modelsMostrats = false;
 
@@ -146,6 +171,10 @@
 
     // Dibuixa diferents figures depenent de l'estat emocional
     function drawArt(dominant, intensity) {
+  let c = getEmotionColor(dominant, intensity);
+  stroke(c);
+  fill(c);
+
       noFill();
       strokeWeight(4);
 
